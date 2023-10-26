@@ -37,6 +37,7 @@ $hotels = [
   ],
 ];
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,15 +49,28 @@ $hotels = [
 </head>
 <body>
   <div class="container bg-body-secondary d-flex">
-    <?php foreach($hotels as $hotel): ?>
-    <div class="card">
-      <div class="card-body">
-      <h5 class="card-title"><?php echo $hotel["name"] ?></h5>
-      <p class="card-text"></p>
-      <a href="#" class="btn btn-primary"></a>
-    </div>
-    </div>
-    <?php  endforeach; ?>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nome dell'hotel:</th>
+          <th scope="col">Descrizione:</th>
+          <th scope="col">Ha il parcheggio?</th>
+          <th scope="col">Voto:</th>
+          <th scope="col">Distanza dal centro:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($hotels as $hotel): ?>
+        <tr>
+          <th scope="row"><?php echo $hotel["name"] ?></th>
+          <td><?php echo $hotel["description"] ?></td>
+          <td><?php echo $hotel["parking"] ?></td>
+          <td><?php echo $hotel["vote"] ?></td>
+          <td><?php echo $hotel["distance_to_center"] ?></td>
+        </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
   </div>
 </body>
 </html>
