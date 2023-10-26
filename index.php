@@ -47,6 +47,16 @@ $hotels = [
   <title>Php Hotel</title>
 </head>
 <body>
-  <div class="container bg-body-secondary ">ciao</div>
+  <div class="container bg-body-secondary d-flex">
+    <?php foreach($hotels as $hotel): ?>
+    <div class="card">
+      <div class="card-body">
+      <h5 class="card-title"><?php echo $hotel["name"] ?></h5>
+      <p class="card-text"></p>
+      <a href="#" class="btn btn-primary"></a>
+    </div>
+    </div>
+    <?php  endforeach; ?>
+  </div>
 </body>
 </html>
