@@ -64,8 +64,20 @@ $hotels = [
         <tr>
           <th scope="row"><?php echo $hotel["name"] ?></th>
           <td><?php echo $hotel["description"] ?></td>
-          <td><?php echo $hotel["parking"] ?></td>
-          <td><?php echo $hotel["vote"] ?></td>
+          <td>
+            <?php 
+              if($hotel["parking"] == true){
+                echo "Ha il parcheggio";
+              }else{echo "Non ha il parcheggio";}
+            ?>
+          </td>
+          <td>
+            <?php
+              for($i=0; $i <= $hotel["vote"]; $i++){
+                echo "star";
+              }
+            ?>
+          </td>
           <td><?php echo $hotel["distance_to_center"] ?></td>
         </tr>
         <?php endforeach; ?>
