@@ -87,19 +87,19 @@ if ($filterParking === "1") {
         </div>
         <button type="submit" class="btn btn-primary">Invia Form</button>
       </form>
-    </div>  
+    </div>
     <div class="col-6">
       <!-- FORM STAR-FILTER -->
       <form method="get" action="index.php" class="w-75 m-auto bg-body-secondary p-4 text-center border rounded-4 ">
         <div class="mb-3">
           <label for="parolaDaCensurare" class="form-label">Filtra per voto:</label>
-          <select name="filterParking" class="form-select" id="filterParking">
-            <option value="" <?php if ($filterParking === "") echo 'selected'; ?>>Scegli un opzione</option>
-            <option value="1" <?php if ($filterParking == 1) echo 'selected'; ?>>Con parcheggio &#9733;</option>
-            <option value="2" <?php if ($filterParking == 2) echo 'selected'; ?>>Senza parcheggio</option>
-            <option value="3" <?php if ($filterParking == 3) echo 'selected'; ?>>Senza parcheggio</option>
-            <option value="4" <?php if ($filterParking == 4) echo 'selected'; ?>>Senza parcheggio</option>
-            <option value="5" <?php if ($filterParking == 5) echo 'selected'; ?>>Senza parcheggio</option>
+          <select name="filterStarParking" class="form-select" id="filterStarParking">
+            <option value="" <?php if($filterStarParking === "") echo 'selected'; ?>>Scegli un opzione</option>
+            <option value="1" <?php if($filterStarParking == 1) echo 'selected'; ?>>Con parcheggio &#9733;</option>
+            <option value="2" <?php if($filterStarParking == 2) echo 'selected'; ?>>Senza parcheggio</option>
+            <option value="3" <?php if($filterStarParking == 3) echo 'selected'; ?>>Senza parcheggio</option>
+            <option value="4" <?php if($filterStarParking == 4) echo 'selected'; ?>>Senza parcheggio</option>
+            <option value="5" <?php if($filterStarParking == 5) echo 'selected'; ?>>Senza parcheggio</option>
           </select>
         </div>
         <button type="submit" class="btn btn-primary">Invia Form</button>
@@ -119,18 +119,12 @@ if ($filterParking === "1") {
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($filteredHotels as $hotel): 
-            if(
-              $filterParking = $hotels ||
-              ($filterParking == 1 && $hotel['parking'] == true)||
-              ($filterParking == 0 && $hotel['parking'] == false)
-            ):
-        ?>
+        <?php foreach ($filteredHotels as $hotel): ?>
         <tr>
           <th scope="row"><?php echo $hotel["name"] ?></th>
           <td><?php echo $hotel["description"] ?></td>
           <td>
-            <?php 
+            <?php
               if($hotel["parking"] == true){
                 echo "Ha il parcheggio";
               }else{echo "Non ha il parcheggio";}
@@ -145,7 +139,7 @@ if ($filterParking === "1") {
           </td>
           <td><?php echo $hotel["distance_to_center"] ?> km dal centro. </td>
         </tr>
-        <?php endif; endforeach; ?>
+        <?php endforeach; ?>
       </tbody>
     </table>
   </div>
