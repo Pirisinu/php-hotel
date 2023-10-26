@@ -39,10 +39,12 @@ $hotels = [
 $filterParking = isset($_GET['filterParking']) ? $_GET['filterParking'] : "";
 
 $filteredHotels = [];
+//Controllo del valore della select
 if ($filterParking === "1") {
   // Filtra solo gli hotel con parcheggio
   foreach ($hotels as $hotel) {
     if ($hotel['parking'] === true) {
+      //Ricostruisco un array filtrato con parcheggio
       $filteredHotels[] = $hotel;
     }
   }
@@ -50,9 +52,10 @@ if ($filterParking === "1") {
   // Filtra solo gli hotel senza parcheggio
   foreach ($hotels as $hotel) {
     if ($hotel['parking'] === false) {
+      //Ricostruisco un array filtrato senza parcheggio
       $filteredHotels[] = $hotel;
     }
-  } 
+  }
 } else {
   // Nessun filtro, mostra tutti gli hotel
   $filteredHotels = $hotels;
@@ -70,17 +73,40 @@ if ($filterParking === "1") {
   <title>Php Hotel</title>
 </head>
 <body>
-  <form method="get" action="index.php" class="w-75 m-auto bg-body-secondary p-4 text-center border rounded-4 ">
-    <div class="mb-3">
-      <label for="parolaDaCensurare" class="form-label">Filtra per parcheggio:</label>
-      <select name="filterParking" class="form-select" id="filterParking">
-      <option value="" <?php if ($filterParking === "") echo 'selected'; ?>>Scegli un opzione</option>
-      <option value="1" <?php if ($filterParking == 1) echo 'selected'; ?>>Con parcheggio</option>
-      <option value="0" <?php if ($filterParking == 0) echo 'selected'; ?>>Senza parcheggio</option>
-    </select>
+  <div class="row">
+    <div class="col-6">
+      <!-- FORM PARKING-FILTER -->
+      <form method="get" action="index.php" class="w-75 m-auto bg-body-secondary p-4 text-center border rounded-4 ">
+        <div class="mb-3">
+          <label for="parolaDaCensurare" class="form-label">Filtra per parcheggio:</label>
+          <select name="filterParking" class="form-select" id="filterParking">
+            <option value="" <?php if ($filterParking === "") echo 'selected'; ?>>Scegli un opzione</option>
+            <option value="1" <?php if ($filterParking == 1) echo 'selected'; ?>>Con parcheggio</option>
+            <option value="0" <?php if ($filterParking == 0) echo 'selected'; ?>>Senza parcheggio</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Invia Form</button>
+      </form>
+    </div>  
+    <div class="col-6">
+      <!-- FORM STAR-FILTER -->
+      <form method="get" action="index.php" class="w-75 m-auto bg-body-secondary p-4 text-center border rounded-4 ">
+        <div class="mb-3">
+          <label for="parolaDaCensurare" class="form-label">Filtra per voto:</label>
+          <select name="filterParking" class="form-select" id="filterParking">
+            <option value="" <?php if ($filterParking === "") echo 'selected'; ?>>Scegli un opzione</option>
+            <option value="1" <?php if ($filterParking == 1) echo 'selected'; ?>>Con parcheggio &#9733;</option>
+            <option value="2" <?php if ($filterParking == 2) echo 'selected'; ?>>Senza parcheggio</option>
+            <option value="3" <?php if ($filterParking == 3) echo 'selected'; ?>>Senza parcheggio</option>
+            <option value="4" <?php if ($filterParking == 4) echo 'selected'; ?>>Senza parcheggio</option>
+            <option value="5" <?php if ($filterParking == 5) echo 'selected'; ?>>Senza parcheggio</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Invia Form</button>
+      </form>
     </div>
-    <button type="submit" class="btn btn-primary">Invia Form</button>
-  </form>
+  </div>
+  
   <div class="container bg-body-secondary d-flex p-4 ">
     <table class="table">
       <thead>
