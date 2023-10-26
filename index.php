@@ -44,7 +44,10 @@ $hotels = [
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- BOOTSTRAP -->
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.css' integrity='sha512-r0fo0kMK8myZfuKWk9b6yY8azUnHCPhgNz/uWDl2rtMdWJlk7gmd9socvGZdZzICwAkMgfTkVrplDahQ07Gi0A==' crossorigin='anonymous'/>
+  <!-- FONT-AWESOME -->
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.css' integrity='sha512-KOWhIs2d8WrPgR4lTaFgxI35LLOp5PRki/DxQvb7mlP29YZ5iJ5v8tiLWF7JLk5nDBlgPP1gHzw96cZ77oD7zQ==' crossorigin='anonymous'/>
   <title>Php Hotel</title>
 </head>
 <body>
@@ -73,12 +76,12 @@ $hotels = [
           </td>
           <td>
             <?php
-              for($i=0; $i <= $hotel["vote"]; $i++){
-                echo "star";
+              for($i=0; $i < $hotel["vote"]; $i++){
+                echo "<i class=\"fa-solid fa-star\"></i>";
               }
             ?>
           </td>
-          <td><?php echo $hotel["distance_to_center"] ?></td>
+          <td><?php echo $hotel["distance_to_center"] ?> km dal centro. </td>
         </tr>
         <?php endforeach; ?>
       </tbody>
