@@ -36,8 +36,27 @@ $hotels = [
     'distance_to_center' => 50
   ],
 ];
+$filterParking = isset($_GET['filterParking']) ? $_GET['filterParking'] : "";
 
-
+$filteredHotels = [];
+if ($filterParking === "1") {
+  // Filtra solo gli hotel con parcheggio
+  foreach ($hotels as $hotel) {
+    if ($hotel['parking'] === true) {
+      $filteredHotels[] = $hotel;
+    }
+  }
+} elseif ($filterParking === "0") {
+  // Filtra solo gli hotel senza parcheggio
+  foreach ($hotels as $hotel) {
+    if ($hotel['parking'] === false) {
+      $filteredHotels[] = $hotel;
+    }
+  } 
+} else {
+  // Nessun filtro, mostra tutti gli hotel
+  $filteredHotels = $hotels;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +70,18 @@ $hotels = [
   <title>Php Hotel</title>
 </head>
 <body>
-  <div class="container bg-body-secondary d-flex">
+  <form method="get" action="index.php" class="w-75 m-auto bg-body-secondary p-4 text-center border rounded-4 ">
+    <div class="mb-3">
+      <label for="parolaDaCensurare" class="form-label">Filtra per parcheggio:</label>
+      <select name="filterParking" class="form-select" id="filterParking">
+      <option value="" <?php if ($filterParking === "") echo 'selected'; ?>>Scegli un opzione</option>
+      <option value="1" <?php if ($filterParking == 1) echo 'selected'; ?>>Con parcheggio</option>
+      <option value="0" <?php if ($filterParking == 0) echo 'selected'; ?>>Senza parcheggio</option>
+    </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Invia Form</button>
+  </form>
+  <div class="container bg-body-secondary d-flex p-4 ">
     <table class="table">
       <thead>
         <tr>
@@ -63,7 +93,13 @@ $hotels = [
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($hotels as $hotel): ?>
+        <?php foreach ($filteredHotels as $hotel): 
+            if(
+              $filterParking = $hotels ||
+              ($filterParking == 1 && $hotel['parking'] == true)||
+              ($filterParking == 0 && $hotel['parking'] == false)
+            ):
+        ?>
         <tr>
           <th scope="row"><?php echo $hotel["name"] ?></th>
           <td><?php echo $hotel["description"] ?></td>
@@ -83,7 +119,7 @@ $hotels = [
           </td>
           <td><?php echo $hotel["distance_to_center"] ?> km dal centro. </td>
         </tr>
-        <?php endforeach; ?>
+        <?php endif; endforeach; ?>
       </tbody>
     </table>
   </div>
